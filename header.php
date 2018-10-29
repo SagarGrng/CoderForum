@@ -1,5 +1,5 @@
 <?php
-include 'dbconnect.php';
+include 'database.php';
 // include 'register.php';
 session_start();
 $log = '';
@@ -18,6 +18,7 @@ if(isset($_SESSION['uname'])){
   $ifLogged='loginhere.php';
   $signInMsg = "Sign In";
 }
+$_SESSION['sessionMsg'] = $signInMsg;
 //
 ?>
 <!DOCTYPE html>
@@ -29,37 +30,26 @@ if(isset($_SESSION['uname'])){
     <meta charset="utf-8">
     <title>CMS</title>
   </head>
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="myNavbar">
-      <div class="container">
-        <a href="home.php" class="navbar-brand">CODER ROOM</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#my-navbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="my-navbar">
-          <ul class="navbar-nav">
-            <li class="navbar-nav">
-                <a href="index.php">Home</a>
-            </li>
-            <li class="navbar-nav">
-                <a href="index.php">Login</a>
-            </li>
-          </ul>
-        </div>
-        <div class="search-div" style="float:right;">
-        <input type="text" name="Search" placeholder="search..."class="form-control"><a href="#"></a>
+  <body id="myBody">
+    <a href="#" id="sliding-nav-icon"><i class="fas fa-bars"></i></a>
+    <header>
+    <nav id="myNavbar">
+      <a href="#" id="coders-room">CODERS ROOM</a>
+      <div class="main-nav">
+        <ul>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="loginhere.php" id="log-a-tag"><?php echo $signInMsg; ?></a></li>
+          <li><a href="logout.php" id="log-out-tag">Logout</a></li>
+        </ul>
       </div>
-      </div>
-      <!-- dropdown menu in header -->
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <a href="loginhere.php"></a>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <!-- <a class="dropdown-item" href="#">Another action</a> -->
-          <p class="dropdown-item"></p>
-          <a class="dropdown-item" href=""></a>
-          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-        </div>
-      </div>
-    </nav>
+   </nav>
+   <div class="sliding-nav" id="sliding-nav">
+     <a href="#" id="close-sliding-nav"><i class="fas fa-times"></i></a>
+     <ul>
+       <a href="#" id="coders-room">CODERS ROOM</a>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="index.php">Sign IN</a></li>
+        <li><a href="index.php">Register</a></li>
+     </ul>
+   </div>
+    </header>
